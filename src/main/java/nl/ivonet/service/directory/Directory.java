@@ -33,7 +33,7 @@ import java.nio.file.Paths;
 public class Directory {
 
     @Inject
-    @Property("rootFolder")
+    @Property
     private String rootFolder;
 
     @Inject private DirectoryFilter directoryFilter;
@@ -54,7 +54,7 @@ public class Directory {
                                       .toString());
 
             }
-        } catch (IOException x) {
+        } catch (final IOException x) {
             throw new RuntimeException(x);
         }
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, this.extensionFilter)) {

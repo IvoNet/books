@@ -33,7 +33,7 @@ public class ExtensionFilter implements DirectoryStream.Filter<Path> {
 
     private static final String DELIMETER = ":";
 
-    @Property(value = "filterExtensions")
+    @Property
     @Inject
     private String filterExtensions;
 
