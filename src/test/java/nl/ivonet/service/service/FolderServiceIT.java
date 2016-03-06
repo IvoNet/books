@@ -75,31 +75,53 @@ public class FolderServiceIT {
     }
 
 
-    // {"baseUri":"http://127.0.0.1:8080/1d6a8823-a1eb-44be-91c6-c38c2cfa91e6/api/folders","browseUri":"http://127.0.0.1:8080/1d6a8823-a1eb-44be-91c6-c38c2cfa91e6/api/folders/","fileUri":null,"downloadUri":null,"folder":{"folders":["Stoker, Bram","Twain, Mark"],"files":[],"path":""}}
+    // {"baseUri":"http://127.0.0.1:8080/1d6a8823-a1eb-44be-91c6-c38c2cfa91e6/api/folders","browseUri":"http://127.0
+    // .0.1:8080/1d6a8823-a1eb-44be-91c6-c38c2cfa91e6/api/folders/","fileUri":null,"downloadUri":null,
+    // "folder":{"folders":["Stoker, Bram","Twain, Mark"],"files":[],"path":""}}
     @Test
     public void testRoot() throws Exception {
-//        final WebTarget target = client.target(URI.create(new URL(this.base, "api/folders").toExternalForm()));
 
-        final String data = ClientBuilder.newClient()
+        final String root = ClientBuilder.newClient()
                                          .target(UriBuilder.fromPath(this.base + "api/folders")
                                                            .build())
                                          .request(MediaType.APPLICATION_JSON)
                                          .get(String.class);
 
-        System.out.println("data = " + data);
-        assertThat(data, notNullValue());
+        System.out.println("data = " + root);
+        assertThat(root, notNullValue());
 
-        final JsonObject jsonObject = Json.createReader(new StringReader(data))
-                                          .readObject();
+        final JsonObject rootData = Json.createReader(new StringReader(root))
+                                        .readObject();
 
-        final String baseUri = jsonObject.getString("baseUri");
+        final String baseUri = rootData.getString("baseUri");
         assertThat(baseUri, endsWith("/api/folders"));
-        final String browseUri = jsonObject.getString("browseUri");
+        final String browseUri = rootData.getString("browseUri");
         assertThat(browseUri, endsWith("/api/folders/"));
 
-        final JsonObject folder = jsonObject.getJsonObject("folder");
+
+        final JsonObject folder = rootData.getJsonObject("folder");
         final JsonArray folders = folder.getJsonArray("folders");
         assertThat(folders.size(), is(2));
+        assertThat(folder.getString("path"), is(""));
+        assertThat(folder.getJsonArray("files")
+                         .size(), is(0));
+        final String newFolder = folders.getString(0);
+
+
+        final String bramStoker = ClientBuilder.newClient()
+                                               .target(UriBuilder.fromPath(this.base + "api/folders/" + newFolder)
+                                                                 .build())
+                                               .request(MediaType.APPLICATION_JSON)
+                                               .get(String.class);
+        final JsonObject bramStokerData = Json.createReader(new StringReader(bramStoker))
+                                              .readObject();
+
+        System.out.println("data = " + bramStokerData);
+        assertThat(root, notNullValue());
+
+        final JsonObject bramStrokerFolder = bramStokerData.getJsonObject("folder");
+        assertThat(bramStrokerFolder.getString("path"), is(newFolder));
+        assertThat(bramStrokerFolder.getJsonArray("files").size(), is(1));
 
 
     }
