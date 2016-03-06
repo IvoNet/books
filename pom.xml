@@ -50,6 +50,23 @@
             <version>${version.weld_se}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+             <groupId>org.jboss.shrinkwrap.resolver</groupId>
+             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+             <scope>test</scope>
+             <type>jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.jboss.shrinkwrap.resolver</groupId>
+             <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
+             <scope>test</scope>
+         </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.5.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

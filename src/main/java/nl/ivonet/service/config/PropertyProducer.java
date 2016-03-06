@@ -61,7 +61,7 @@ public class PropertyProducer {
     @PostConstruct
     public void init() {
         this.properties = new Properties();
-        final InputStream stream = Producers.class.getResourceAsStream("/application.properties");
+        final InputStream stream = PropertyProducer.class.getResourceAsStream("/application.properties");
         if (stream == null) {
             throw new RuntimeException("No properties!!!");
         }
