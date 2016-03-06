@@ -83,6 +83,7 @@ buildNumber.properties
 .mvn/timing.properties
 
 #ivonet
+artifact/
 deploy.sh
 undeploy.sh
 wildfly.sh
