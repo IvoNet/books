@@ -20,18 +20,25 @@ import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
 public class WeldContext {
-
-    public static final WeldContext INSTANCE = new WeldContext();
-
-    private final Weld weld;
-    private final WeldContainer container;
+    private final WeldContainer weldContainer;
 
     private WeldContext() {
-        this.weld = new Weld();
-        this.container = this.weld.initialize();
+        final Weld weld = new Weld();
+        this.weldContainer = weld.initialize();
+    }
+
+
+    public static WeldContext getInstance() {
+        return WeldContext.Instance.SINGLETON;
+    }
+
+    private static final class Instance {
+        static final WeldContext SINGLETON = new WeldContext();
     }
 
     public <T> T getBean(final Class<T> type) {
-        return this.container.instance().select(type).get();
+        return this.weldContainer.instance()
+                                 .select(type)
+                                 .get();
     }
 }

@@ -82,4 +82,12 @@ public class FolderService {
         return retrieveData(folder);
     }
 
+
+//    @GET
+//    @Consumes(APPLICATION_JSON)
+//    @Produces(APPLICATION_JSON)
+//    public Data folderByJson(final FolderName folderName){
+//        return retrieveData(folderName.getName());
+//    }
+
 }

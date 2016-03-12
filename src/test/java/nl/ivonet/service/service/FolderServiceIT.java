@@ -39,10 +39,10 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.StringReader;
 import java.net.URL;
 
-import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
 
 /**
  * @author Ivo Woltring

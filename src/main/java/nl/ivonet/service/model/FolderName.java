@@ -14,19 +14,23 @@
  * limitations under the License.
  */
 
-package nl.ivonet.helper;
+package nl.ivonet.service.model;
 
-import org.junit.runners.BlockJUnit4ClassRunner;
-import org.junit.runners.model.InitializationError;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class WeldJUnit4Runner extends BlockJUnit4ClassRunner {
+/**
+ * @author Ivo Woltring
+ */
+@XmlRootElement
+public class FolderName {
 
-    public WeldJUnit4Runner(final Class<Object> clazz) throws InitializationError {
-        super(clazz);
+    private String name;
+
+    public String getName() {
+        return this.name;
     }
 
-    @Override
-    protected Object createTest() {
-        return WeldContext.getInstance().getBean(getTestClass().getJavaClass());
+    public void setName(final String name) {
+        this.name = name;
     }
 }

@@ -56,6 +56,4 @@ public class DirectoryTest {
         assertThat(folder.getFiles()
                          .get(0), Is.is("pg345.epub"));
     }
-
-
 }
