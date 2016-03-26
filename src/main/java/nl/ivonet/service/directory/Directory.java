@@ -49,7 +49,6 @@ public class Directory {
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, this.directoryFilter)) {
             for (final Path entry : stream) {
-
                 folder.addFolder(entry.getFileName()
                                       .toString());
 
@@ -66,8 +65,6 @@ public class Directory {
         } catch (final IOException x) {
             throw new RuntimeException(x);
         }
-
-
         return folder;
     }
 

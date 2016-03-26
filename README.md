@@ -18,3 +18,6 @@ Integration testing is done with Arquillian
 ```sh
 mvn clean verify -P with-integration
 ```
+
+## Curl
+

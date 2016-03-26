@@ -16,14 +16,17 @@
 
 package nl.ivonet.service.model;
 
+
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Ivo Woltring
  */
 @XmlRootElement
-public class FolderName {
+public class ResourceName {
 
+    @XmlElement
     private String name;
 
     public String getName() {
